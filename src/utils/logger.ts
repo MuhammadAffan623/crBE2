@@ -1,15 +1,6 @@
 import { createLogger, format, transports } from 'winston';
 import chalk from 'chalk';
-import fs from 'fs';
-import path from 'path';
-
 const { combine, timestamp, printf } = format;
-
-// Ensure the logs directory exists
-const logDirectory = 'logs';
-if (!fs.existsSync(logDirectory)) {
-  fs.mkdirSync(logDirectory);
-}
 
 const logger = createLogger({
   level: 'debug',
@@ -22,9 +13,7 @@ const logger = createLogger({
     })
   ),
   transports: [
-    new transports.Console(),
-    new transports.File({ filename: path.join(logDirectory, 'error.log'), level: 'error' }),
-    new transports.File({ filename: path.join(logDirectory, 'combined.log') }),
+    new transports.Console(),  // Console transport works on Vercel
   ],
 });
 
