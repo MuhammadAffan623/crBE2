@@ -3,6 +3,7 @@ import http from "http";
 import cors from "cors";
 import helmet from "helmet";
 import currencyRoutes from "./routes/currencyRoutes";
+import "./cron/index";
 const app = express();
 const server = http.createServer(app);
 const PORT = process.env.PORT || 3000;
